@@ -1,7 +1,7 @@
-f = open('make_seq.out.self')
+f = open('make_seq.out')
 data = f.read().split('\n')[:-1] #read in file, split on new lines and remove the new line character at the end
 l = 25 #length of each read (assumed to be all equal length)
-k = 18 #vertices of length k-1
+k = 15 #vertices of length k-1
 #TODO: could write code to optimatize the value of k depending on l.
 
 reads = set(data[1:]) #making it a set just to eliminate repeats
@@ -41,14 +41,14 @@ def find_cycle(v):
     return c
 
 cycle = find_cycle(v) #first cycle using starting point v
-def graph_not_empty():
-    for v in graph:
+def cycle_not_empty():
+    for v in cycle:
         if graph[v] != []:
             return True
     return False
 
 #loop over initial cycle and find other partial cycles at free vertices
-while graph_not_empty():
+while cycle_not_empty():
     for i, v in enumerate(cycle):
         if graph[v] != []:
             partial_cycle = find_cycle(v)
@@ -72,10 +72,11 @@ def cyclically_equal(s1, s2):
 assembled = ''
 for v in cycle:
     assembled += v[0]
-worked, i = cyclically_equal(assembled,answer)
-if worked:
+#worked, i = cyclically_equal(assembled,answer)
+"""if worked:
     print 'successful assembly'
 else:
     print 'something went differently and it didn\'t work. try adjusting the value of k or generate different random reads'
-print assembled[i:] + assembled[:i] #shift assembled seqence cyclically to put it in the same form as the original
-print answer
+"""
+print assembled #shift assembled seqence cyclically to put it in the same form as the original
+#print answer

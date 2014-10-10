@@ -7,5 +7,5 @@ To run:
   *  cd /tmp
   *  git clone https://github.com/podgef/MA215.git
   *  cd MA215
-  *  python make_seq.py
-  *  python assemble_seq.py
+  *  wget http://www.maths.nuigalway.ie/~cathal/make_seq.out
+  *  python assemble_better.py
