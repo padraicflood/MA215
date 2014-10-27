@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+          <link type="text/css" rel="stylesheet" href="/stylesheets/align.css" />
+    </head>
+    <body>
+        <form action="/align" method="post">
+            <label for="x">First Sequence</label><input type="text" name="x" value="{{ x }}" required/>
+            <label for="y">Second Sequence</label><input type="text" name="y" value="{{ y }}" required/>
+            <label for="o">opening gap</label><input type="number" name="o" value="{{ o }}" required/>
+            <label for="e">extending gap</label><input type="number" name="e" value="{{ e }}" required/>
+            <label for="match">match</label><input type="number" name="match" value="{{ match }}" required/>
+            <label for="transition">transition</label><input type="number" name="transition" value="{{ transition }}" required/>
+            <label for="transversion">transversion</label><input type="number" name="transversion" value="{{ transversion }}" required/><br>
+            <input type="submit" value="align" id="sub">
+        </form>
+        <div id="output">
+            <div id="score"><b> score: {{value}}</b></div>
+            <div class="seq">
+            <img src="images/x.png" >
+            {% for n in xout %}
+            <img src="images/{{ n }}.png" >
+            {%endfor %}
+            </div>
+            <div class="seq">
+            <img src="images/y.png" >
+            {% for n in yout %}
+            <img src="images/{{ n }}.png" >
+            {%endfor %}
+            </div>
+        </div>
+    </body>
+</html>

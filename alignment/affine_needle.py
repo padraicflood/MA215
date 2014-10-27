@@ -1,13 +1,14 @@
 import numpy as np
 import operator
-x = 'ACGT' 
-y = 'AGCCG' 
+x = 'GAATTCCGTTA' 
+y = 'GGATCGA' 
+#NOTE: cleaned up importable version of this module can be found in the web_app folder.
 #scoring scheme:
 o = -2
 e = -1
-match = +1
+match = +2
 transition = -1
-transversion = -2
+transversion = -1
 purines = ('A', 'G')
 pyrimidines = ('T', 'C')
 #grid of arrows and values
@@ -15,16 +16,15 @@ grid = np.arange((len(x)+1)*(len(y)+1)*6).reshape(len(x)+1,len(y)+1,6)
 # 0 M index, 1 M value
 # 2 Ix index, 3 Ix value
 # 4 Iy index, 5 Iy value
-
+letter_to_num = {'C': 0, 'T': 1, 'A': 2, 'G': 3}
+scoring_matrix = [
+        [match, transition, transversion, transversion],#C 
+        [transition, match, transversion, transversion],#T
+        [transversion, transversion, match, transition],#A
+        [transversion, transversion, transition, match] #G
+        ]
 def s(i, j):
-    if x[i-1] == y[j-1]:
-        return match
-    else:
-        if (x[i-1] in purines and y[j-1] in purines) or (x[i-1] in pyrimidines and y[j-1] in pyrimidines):
-            return transition
-        else:
-            return transversion
-
+    return scoring_matrix[letter_to_num[x[i-1]]][letter_to_num[y[j-1]]]
 def Ix(i, j):
     if (i,j) == (0, 0):
         return [3,0]

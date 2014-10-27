@@ -1,0 +1,26 @@
+.seq {
+    white-space: nowrap;
+}
+form {
+    width: 80%;
+}
+
+label, input {
+    display: inline-block;
+}
+
+label {
+    width: 20%;
+    text-align: right;
+}
+
+label + input {
+    width: 30%;
+    margin: 0 30% 0 4%;
+}
+#output{
+    margin: 10px auto 0 auto;
+}
+.error{
+    color: red;
+}

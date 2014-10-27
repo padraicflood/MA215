@@ -39,9 +39,7 @@ def F(i, j):
 for i in range(0, len(x)+1):
     for j in range(0, len(y)+1):
         F(i,j)
-print grid[len(x),len(y)][0]
-print grid[len(x),len(y)][1]
-print n
+print "score: ", grid[len(x),len(y)][1]
 arrows = []
 
 i = len(x)
@@ -50,7 +48,6 @@ j = len(y)
 while(i > 0 or j > 0):
     index = grid[i,j][0]
     arrows.append(index)
-    print index;
     if index == 0:
         i -= 1
         j -= 1
