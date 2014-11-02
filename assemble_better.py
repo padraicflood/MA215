@@ -24,7 +24,7 @@ def find_cycle(v, graph):
         v = graph[v][-1]
         del graph[old_v][-1]
     return c
-
+#called len(data) times
 def find_sequence(graph, vertices, initial_v):
     cycle = find_cycle(initial_v, graph)
     while cycle_not_empty(cycle, graph):
@@ -33,24 +33,10 @@ def find_sequence(graph, vertices, initial_v):
                 partial_cycle = find_cycle(v, graph)
                 cycle[i:i] = partial_cycle
                 break
-    assembled = ''
+    assembled = initial_v[:-1]
     for v in cycle:
-        assembled += v[0]
+        assembled += v[-1]
     return assembled 
-
-#no longer using this function
-def cyclically_equal(s1, s2):
-    for i in range(len(s1)):
-        tmp = s1[i:] + s1[:i]
-        if tmp == s2:
-            return (True, i)
-    s1 = s1[::-1]
-    for i in range(len(s1)):
-        tmp = s1[i:] + s1[:i]
-        if tmp == s2:
-            print i
-            return (True, i)
-    return False
 
 #split reads up into vertices of length k-1
 def construct_vertices(reads, k, l):
@@ -60,6 +46,7 @@ def construct_vertices(reads, k, l):
             vertices.add(read[i: (k-1) + i])
     return vertices
 
+#only called once
 def construct_graph(vertices, reads):
     graph = {}
     for start in vertices:
